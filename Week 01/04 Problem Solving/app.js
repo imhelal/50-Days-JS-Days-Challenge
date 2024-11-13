@@ -56,6 +56,12 @@ function howManySeconds(hours) {
   let totalSeconds = hours * 3600;
   return totalSeconds;
 }
+// aproch two
+function howManySeconds2(hours) {
+  const mins = 60;
+  const seconds = 60;
+  return hours * mins * seconds;
+}
 
 //console.log(howManySeconds(0.1));
 
