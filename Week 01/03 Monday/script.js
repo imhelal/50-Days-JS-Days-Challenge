@@ -42,3 +42,5 @@ swapBTn.addEventListener("click", swapCurrency);
 window.onload = function () {
   getEchangeRate();
 };
+
+
