@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart Page</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <div><a class="logo" href="index.html">MyShop</a></div>
+        <ul class="nav">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="cart.html">Cart</a></li>
+        </ul>
+
+        <div class="cart">
+          <span class="cart-icon">🛒</span>
+          <span class="cart-count">0</span>
+        </div>
+      </div>
+    </header>
+
+    <section class="cart-section">
+      <div class="container">
+        <h2>Your Cart</h2>
+        <div class="cart-items">
+          <!-- Hardcoded Default Cart Items -->
+          <div class="cart-item">
+            <img src="https://via.placeholder.com/100" alt="Product 1" />
+            <div class="cart-item-details">
+              <p class="cart-item-title">Product 1</p>
+              <p class="cart-item-price">$10.00</p>
+              <p class="cart-item-quantity">
+                Quantity:
+                <button class="decrease-quantity" data-id="prod1">-</button>
+                <span>2</span>
+                <button class="increase-quantity" data-id="prod1">+</button>
+              </p>
+            </div>
+            <button class="remove-item" data-id="prod1">Remove</button>
+          </div>
+
+          <div class="cart-item">
+            <img src="https://via.placeholder.com/100" alt="Product 2" />
+            <div class="cart-item-details">
+              <p class="cart-item-title">Product 2</p>
+              <p class="cart-item-price">$15.00</p>
+              <p class="cart-item-quantity">
+                Quantity:
+                <button class="decrease-quantity" data-id="prod2">-</button>
+                <span>1</span>
+                <button class="increase-quantity" data-id="prod2">+</button>
+              </p>
+            </div>
+            <button class="remove-item" data-id="prod2">Remove</button>
+          </div>
+
+          <div class="cart-item">
+            <img src="https://via.placeholder.com/100" alt="Product 3" />
+            <div class="cart-item-details">
+              <p class="cart-item-title">Product 3</p>
+              <p class="cart-item-price">$25.00</p>
+              <p class="cart-item-quantity">
+                Quantity:
+                <button class="decrease-quantity" data-id="prod3">-</button>
+                <span>3</span>
+                <button class="increase-quantity" data-id="prod3">+</button>
+              </p>
+            </div>
+            <button class="remove-item" data-id="prod3">Remove</button>
+          </div>
+        </div>
+
+        <div class="cart-summary">
+          <p>Total: <span class="cart-total">$100.00</span></p>
+          <button class="clear-cart">Clear Cart</button>
+        </div>
+      </div>
+    </section>
+
+    <script src="cart.js"></script>
+  </body>
+</html>
