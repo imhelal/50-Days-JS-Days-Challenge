@@ -50,71 +50,79 @@ const products = [
 const productGrid = document.querySelector(".product-grid");
 const cartCount = document.querySelector(".cart-count");
 
-// Initial cart
-const cartItems = [];
-console.log(cartItems);
+// Cart List
+let cartItems = [];
 
-// Find the clicked product
-let findClickedProduct = (product_id) => {
-  // Find the product from the product array list
-  let getProduct = products.find((item) => item.id == product_id);
-
-  if (!getProduct) {
-    return false;
+// Get saved items
+const getSavedItem = () => {
+  let dataFromLocal = JSON.parse(localStorage.getItem("cartItems"));
+  if (dataFromLocal) {
+    cartItems = dataFromLocal;
+    // Update header cart
+    cartCount.textContent = cartItems.length;
   }
-
-  return getProduct;
 };
+getSavedItem();
 
 // Add to cart
-const addToCart = (elm) => {
-  // item clicked
-  let clickedId = elm.parentElement.getAttribute("data-id");
-
-  // find the clicked product
-  product = findClickedProduct(clickedId);
+const addToCart = (element) => {
+  let clickedItemId = element.parentElement.getAttribute("data-id");
+  let getProduct = products.find((item) => item.id == clickedItemId);
 
   // Check if already exists
-  let existingCartItem = cartItems.find((item) => item.id == clickedId);
+  let existingItem = cartItems.find((item) => item.id == clickedItemId);
 
-  if (existingCartItem) {
-    existingCartItem.quantity += 1;
+  if (existingItem) {
+    existingItem.quantity += 1;
   } else {
+    // Item to add
     let itemToAdd = {
-      id: product.id,
-      title: product.title,
-      price: product.price,
+      id: getProduct.id,
+      title: getProduct.title,
+      price: getProduct.price,
       quantity: 1,
     };
 
     cartItems.push(itemToAdd);
   }
 
-  //increase the cart totoal
+  // Update header cart
   cartCount.textContent = cartItems.length;
-  //debug
+
+  // Save to localstorage
+  saveTolocalStorage();
   console.log(cartItems);
 };
 
-// Render product html
-const renderProductHTML = (product) => {
-  let html = `<img
+// Save to localstorage
+const saveTolocalStorage = () => {
+  localStorage.setItem("cartItems", JSON.stringify(cartItems));
+};
+
+// Render html
+const renderHTMl = (product) => {
+  let html = `
+            <img
               src="https://picsum.photos/200"
               alt="Product Image"
               class="product-image"
             />
             <h3 class="product-title">${product.title}</h3>
             <p class="product-price">$${product.price}</p>
-            <button class="add-to-cart" onclick="addToCart(this)">Add to Cart</button>`;
+            <button class="add-to-cart" onclick="addToCart(this)">
+              Add to Cart
+            </button>
+          `;
 
   let div = document.createElement("div");
   div.classList.add("product-card");
   div.setAttribute("data-id", product.id);
   div.innerHTML = html;
+
   productGrid.appendChild(div);
 };
 
-// Fetch products
+// Fetch the products
 products.forEach((product) => {
-  renderProductHTML(product);
+  renderHTMl(product);
 });
