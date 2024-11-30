@@ -53,13 +53,22 @@ const cartCount = document.querySelector(".cart-count");
 // Cart List
 let cartItems = [];
 
+// Update Cart
+const updateCart = () => {
+  let totalCartCount = cartItems.reduce(
+    (prevQuantity, item) => prevQuantity + item.quantity,
+    0
+  );
+  cartCount.textContent = totalCartCount;
+};
+
 // Get saved items
 const getSavedItem = () => {
   let dataFromLocal = JSON.parse(localStorage.getItem("cartItems"));
   if (dataFromLocal) {
     cartItems = dataFromLocal;
     // Update header cart
-    cartCount.textContent = cartItems.length;
+    updateCart();
   }
 };
 getSavedItem();
@@ -87,11 +96,10 @@ const addToCart = (element) => {
   }
 
   // Update header cart
-  cartCount.textContent = cartItems.length;
+  updateCart();
 
   // Save to localstorage
   saveTolocalStorage();
-  console.log(cartItems);
 };
 
 // Save to localstorage
